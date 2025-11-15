@@ -1,8 +1,8 @@
 let ex = require("express")
 let app = ex()
 let cors = require("cors")
-let connection = require("../Mongodb/Connection/connection")
-let router = require("../Mongodb/Router/router")
+let connection = require("../Connection/connection")
+let router = require("../Router/router")
 
 connection()
 app.use(cors())
