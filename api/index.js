@@ -13,17 +13,16 @@
 
 const express = require("express");
 const cors = require("cors");
+const serverless = require("serverless-http");
 const connection = require("../Connection/connection");
 const router = require("../Router/router");
-const serverless = require("serverless-http");
 
+// Connect to MongoDB
 connection();
 
 const app = express();
-
 app.use(cors());
 app.use(express.json());
 app.use(router);
 
-// Export as serverless function for Vercel
 module.exports = serverless(app);
