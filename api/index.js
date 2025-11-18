@@ -13,7 +13,6 @@
 
 const express = require("express");
 const cors = require("cors");
-const serverless = require("serverless-http");
 const router = require("../Router/router");
 const connection = require("../Connection/connection");
 
@@ -21,7 +20,6 @@ require("dotenv").config();
 connection();
 
 const app = express();
-
 app.use(cors());
 app.use(express.json());
 app.use(router);
@@ -31,6 +29,5 @@ app.get("/", (req, res) => {
 });
 
 module.exports = app;
-module.exports.handler = serverless(app);
 
 
