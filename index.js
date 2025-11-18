@@ -13,8 +13,8 @@
 
 const express = require("express");
 const cors = require("cors");
-const router = require("../Router/router");
-const connection = require("../Connection/connection");
+const router = require("./Router/router");
+const connection = require("./Connection/connection");
 
 require("dotenv").config();
 connection();
