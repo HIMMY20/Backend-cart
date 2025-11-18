@@ -14,15 +14,22 @@
 const express = require("express");
 const cors = require("cors");
 const serverless = require("serverless-http");
-const connection = require("../Connection/connection");
 const router = require("../Router/router");
+const connection = require("../Connection/connection");
 
-// Connect to MongoDB
+require("dotenv").config();
+
 connection();
 
 const app = express();
+
 app.use(cors());
 app.use(express.json());
 app.use(router);
+
+// Root route (to avoid 404)
+app.get("/", (req, res) => {
+  res.send("Backend is running on Vercel!");
+});
 
 module.exports = serverless(app);
