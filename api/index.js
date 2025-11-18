@@ -13,7 +13,6 @@
 
 const express = require("express");
 const cors = require("cors");
-const serverless = require("serverless-http");
 const router = require("../Router/router");
 const connection = require("../Connection/connection");
 
@@ -27,9 +26,10 @@ app.use(cors());
 app.use(express.json());
 app.use(router);
 
-// Root route (to avoid 404)
+// Root route
 app.get("/", (req, res) => {
   res.send("Backend is running on Vercel!");
 });
 
-module.exports = serverless(app);
+module.exports = app;  // <-- IMPORTANT
+
