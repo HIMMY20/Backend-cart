@@ -13,15 +13,22 @@
 
 const express = require("express");
 const cors = require("cors");
-const router = require("./Router/router");
-const connection = require("./Connection/connection");
+const router = require("../Router/router");
+const connection = require("../Connection/connection");
 
 require("dotenv").config();
-connection();
 
 const app = express();
-app.use(cors());
+
+// ⭐ MOST IMPORTANT – CORS FIX
+app.use(cors({
+    origin: "*",          // Allow all (for now)
+    methods: "GET,POST,PUT,DELETE",
+    credentials: true
+}));
+
 app.use(express.json());
+connection();
 app.use(router);
 
 app.get("/", (req, res) => {
@@ -29,5 +36,6 @@ app.get("/", (req, res) => {
 });
 
 module.exports = app;
+
 
 
